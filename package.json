@@ -1,0 +1,13 @@
+{
+  "name": "hitclub-md5-predictor",
+  "version": "2.0.0",
+  "description": "Hệ thống API phân tích VIP 50 thuật toán phẳng HitClub MD5",
+  "main": "hit.js",
+  "scripts": {
+    "start": "node hit.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.2"
+  }
+}
