@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const API_URL = "http://103.249.117.201:49483/hitclub/md5/history?key=e9cef4b4e07a547ea51e5d4358286cac3ddad730ee760a48";
 
 app.use(express.json());
@@ -924,6 +924,14 @@ app.get('/dudoan/md5', async (req, res) => {
     res.json(responsePayload);
 });
 
+app.get("/", (req, res) => {
+    res.send("OK");
+});
+
+app.get("/health", (req, res) => {
+    res.json({ status: "OK" });
+});
+
 app.get('/history/md5', async (req, res) => {
     let dataset = await fetchAndCleanGameData();
     if (dataset && dataset.cleanHistory.length > 0) {
@@ -932,11 +940,9 @@ app.get('/history/md5', async (req, res) => {
     res.json(global.predictedHistoryCache);
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`========================================================================`);
-    console.log(`[HỆ THỐNG VIP] KHỞI CHẠY HOÀN TẤT TOÀN BỘ THUẬT TOÁN ĐA TẦNG TOÁN HỌC TỔ HỢP`);
-    console.log(`[HỆ THỐNG VIP] SERVER ĐANG CHẠY ỔN ĐỊNH TẠI CỔNG MẠNG PORT: 3000`);
-    console.log(` -> Đường dẫn API Dự Đoán VIP: http://localhost:3000/dudoan/md5`);
-    console.log(` -> Đường dẫn API Xem Lịch Sử 50 Phiên: http://localhost:3000/history/md5`);
+    console.log(`[HỆ THỐNG VIP] KHỞI CHẠY HOÀN TẤT`);
+    console.log(`[HỆ THỐNG VIP] SERVER ĐANG CHẠY PORT: ${process.env.PORT || 3000}`);
     console.log(`========================================================================`);
 });
