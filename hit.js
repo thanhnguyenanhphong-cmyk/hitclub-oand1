@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const API_URL = "http://103.249.117.201:49483/hitclub/md5/history?key=e9cef4b4e07a547ea51e5d4358286cac3ddad730ee760a48";
 
+app.use(cors());
 app.use(express.json());
 
 // Khởi tạo không gian bộ đệm toàn cục và reset thống kê về 0 sạch sẽ
